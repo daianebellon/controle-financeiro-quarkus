@@ -9,6 +9,7 @@ import io.quarkus.mongodb.reactive.ReactiveMongoCollection;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
 
 @ApplicationScoped
 public class CategoryRepository{
@@ -17,17 +18,19 @@ public class CategoryRepository{
     MongoContext mongoContext;
 
     public CategoryOutputDto save(CategoryInputDto categoryInput) {
-       if (categoryInput.getDescription() == null) {
-            throw new IllegalArgumentException("Descrição nula");
-       } else {
-            var category = Converter.executar(categoryInput);
-            getCollection().insertOne(category).await().indefinitely();
-            return Converter.executar(category);
-       }
+        var category = Converter.executar(categoryInput);
+        getCollection().insertOne(category).await().indefinitely();
+        return Converter.executar(category);
     }
 
+    public List<Category> findAll() {
+        List<Category> categoriesList = getCollection().find().collect().asList().await().indefinitely();
+        return categoriesList;
+    }
+
+
     private ReactiveMongoCollection<Category> getCollection() {
-         return mongoContext.getCollection("RegisterCategory", Category.class);
+        return mongoContext.getCollection("RegisterCategory", Category.class);
     }
 
 }
