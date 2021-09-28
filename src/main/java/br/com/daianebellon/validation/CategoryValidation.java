@@ -6,7 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.util.Objects;
 
 @ApplicationScoped
-public class CategoriaValidation {
+public class CategoryValidation {
 
     public void validator(CategoryInputDto category) {
         Objects.requireNonNull(category.getDescription());

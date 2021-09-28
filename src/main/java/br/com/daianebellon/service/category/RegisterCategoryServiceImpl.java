@@ -3,7 +3,7 @@ package br.com.daianebellon.service.category;
 import br.com.daianebellon.dto.category.CategoryInputDto;
 import br.com.daianebellon.dto.category.CategoryOutputDto;
 import br.com.daianebellon.repository.category.CategoryRepository;
-import br.com.daianebellon.validation.CategoriaValidation;
+import br.com.daianebellon.validation.CategoryValidation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ public class RegisterCategoryServiceImpl implements RegisterCategoryService {
     CategoryRepository categoryRepository;
 
     @Inject
-    CategoriaValidation categoryValidation;
+    CategoryValidation categoryValidation;
 
     @Override
     public CategoryOutputDto register(CategoryInputDto category) {
