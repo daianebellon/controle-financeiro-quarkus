@@ -6,6 +6,8 @@ import br.com.daianebellon.dto.category.CategoryOutputDto;
 import br.com.daianebellon.entity.category.Category;
 import br.com.daianebellon.repository.MongoContext;
 import io.quarkus.mongodb.reactive.ReactiveMongoCollection;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -24,13 +26,16 @@ public class CategoryRepository {
     }
 
     public List<Category> findAll() {
-        List<Category> categoriesList = getCollection().find().collect().asList().await().indefinitely();
-        return categoriesList;
+       return getCollection().find().collect().asList().await().indefinitely();
     }
 
+    public void deleteById(ObjectId id) {
+        getCollection().deleteOne(new Document("_id", id)).await().indefinitely();
+    }
 
     private ReactiveMongoCollection<Category> getCollection() {
-        return mongoContext.getCollection("RegisterCategory", Category.class);
+        return mongoContext.getCollection("Category", Category.class);
     }
+
 
 }
