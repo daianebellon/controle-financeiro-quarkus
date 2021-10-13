@@ -1,6 +1,6 @@
 package br.com.daianebellon.repository.category;
 
-import br.com.daianebellon.Converter.Converter;
+import br.com.daianebellon.Converter.CategoryConverter;
 import br.com.daianebellon.dto.category.CategoryInputDto;
 import br.com.daianebellon.dto.category.CategoryOutputDto;
 import br.com.daianebellon.entity.category.Category;
@@ -20,9 +20,9 @@ public class CategoryRepository {
     MongoContext mongoContext;
 
     public CategoryOutputDto save(CategoryInputDto categoryInput) {
-        var category = Converter.executar(categoryInput);
+        var category = CategoryConverter.executar(categoryInput);
         getCollection().insertOne(category).await().indefinitely();
-        return Converter.executar(category);
+        return CategoryConverter.executar(category);
     }
 
     public List<Category> findAll() {

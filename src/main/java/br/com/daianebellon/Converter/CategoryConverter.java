@@ -1,11 +1,12 @@
 package br.com.daianebellon.Converter;
 
+import br.com.daianebellon.dto.account.AccountInputDto;
 import br.com.daianebellon.dto.category.CategoryInputDto;
 import br.com.daianebellon.dto.category.CategoryOutputDto;
 import br.com.daianebellon.entity.category.Category;
 import org.bson.types.ObjectId;
 
-public class Converter {
+public class CategoryConverter {
 
     public static CategoryOutputDto executar(Category category) {
         CategoryOutputDto categoryOutputDto = new CategoryOutputDto();
@@ -21,4 +22,4 @@ public class Converter {
         return category;
     }
 
- }
+}
