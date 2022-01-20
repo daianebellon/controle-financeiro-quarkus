@@ -1,6 +1,6 @@
-# controle-financeiro-quarkus Project
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-## Running the application in dev mode
+# Controle Financeiro
+Esse projeto tem como objetivo praticar o framework Quarkus.
+## Para rodar a aplicação em modo dev:
 ```shell script
 ./mvnw compile quarkus:dev
 ```
